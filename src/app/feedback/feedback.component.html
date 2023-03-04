@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10">
+      <h3 style="text-align:center">Feedback Form</h3>
+      <h5 style="text-align:center">If you have a suggestion or any feedback for us, we'd love to hear it</h5>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="offset-2 col-md-6">
+      <form [formGroup]="feedbackForm" (ngSubmit)="SubmitForm(feedbackForm)">
+        <div class="form-group">
+          <label>Name :</label>
+          <input type="text" class="form-control" placeholder="Write your name" formControlName="name">
+          <div *ngIf="feedbackForm.controls['name'].errors && (feedbackForm.controls['name'].dirty || feedbackForm.controls['name'].touched)" class="alert alert-danger">
+            <p *ngIf="feedbackForm.controls['name'].errors.required">Name is mandatory</p>
+          </div>
+        </div>
+        <br />
+        <div class="form-group">
+          <label>Email Id :</label>
+          <input type="text" class="form-control" placeholder="Write your email" formControlName="emailId">
+          <div *ngIf="feedbackForm.controls['emailId'].errors && (feedbackForm.controls['emailId'].dirty || feedbackForm.controls['emailId'].touched)" class="alert alert-danger">
+            <p *ngIf="feedbackForm.controls['emailId'].errors.required">Email Id is mandatory</p>
+            <p *ngIf="feedbackForm.controls['emailId'].errors.emailError">{{feedbackForm.controls['emailId'].errors.emailError.message}}</p>
+          </div>
+        </div>
+        <br />
+        <div class="form-group">
+          <label>Please leave your feedback below :</label>
+          <textarea class="form-control" placeholder="Write your valuable feedback" formControlName="feedback" rows="5" cols="30"></textarea>
+          <div *ngIf="feedbackForm.controls['feedback'].errors && (feedbackForm.controls['feedback'].dirty || feedbackForm.controls['feedback'].touched)" class="alert alert-danger">
+            <p *ngIf="feedbackForm.controls['feedback'].errors.required">Feedback message is mandatory</p>
+            <p *ngIf="feedbackForm.controls['feedback'].errors.minlength">Feedback message cannot be less than 8 characters</p>
+            <p *ngIf="feedbackForm.controls['feedback'].errors.maxlength">Feedback message cannot be more than 100 characters</p>
+          </div>
+        </div>
+        <br />
+        <button type="submit" class="btn btn-primary">Submit Feedback</button>
+      </form>
+      <div>
+        {{msg}}
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,35 @@
+<div *ngIf="commonLayout">
+  <app-common-layout></app-common-layout>
+</div>
+<div *ngIf="customerLayout">
+  <app-customer-layout></app-customer-layout>
+</div>
+
+<div style="text-align:center;">
+  <h1>View Purchases</h1>
+  <br />
+  <h3>You have purchased the following products:</h3>
+  <div class="table-responsive">
+      <table class="table" style="border:5px solid rgba(220,230,242,1);" *ngIf="purchases; else noPurchases">
+          <tr style="background-color:rgba(220,230,242,1); font-size:12pt">
+              <th style="text-align:center">Purchase Id</th>
+              <th style="text-align:center">Product Name</th>
+              <th style="text-align:center">Quantity Purchased</th>
+              <th style="text-align:center">Date of Purchase</th>
+              <th style="text-align:center">Action</th>
+          </tr>
+          <tr *ngFor="let purchase of purchases" style="background-color:white">
+            <td>{{ purchase.purchaseId }}</td>
+            <td>{{ purchase.productName }}</td>
+            <td>{{ purchase.quantityPurchased }}</td>
+            <td>{{ purchase.purchaseDate }}</td>
+            <td><input type="button" class="btn btn-primary" value="Rate Product" (click)="rateProduct(purchase.productId, purchase.productName)" /></td>
+          </tr>
+      </table>
+      <ng-template #noPurchases>
+        <h3>{{ errorMsg }}</h3>
+      </ng-template>
+  </div>
+</div>
+
+

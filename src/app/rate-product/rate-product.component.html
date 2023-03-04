@@ -1,0 +1,38 @@
+<app-customer-layout></app-customer-layout>
+
+<div class="container">
+  <h3 style="text-align: center;">Rate Product:</h3>
+  <div class="offset-3 col-sm-5">
+  <form [formGroup]="rateProductForm" (ngSubmit)="rateProduct(prodId, prodName, rateProductForm.controls['rating'].value, rateProductForm.controls['reviewComments'].value)">
+    <div class="form-group">
+      <label>Product Id</label>
+      <input type="text" class="form-control" formControlName="productId" readonly>
+    </div>
+    <br />
+    <div class="form-group">
+      <label>Product Name</label>
+      <input type="text" class="form-control" formControlName="productName" readonly>
+    </div>
+    <br />
+    <div class="form-group">
+      <label>Ratings</label>
+      <input type="number" min="1" max="5" class="form-control" formControlName="rating">
+      <div *ngIf="rateProductForm.controls['rating'].errors && (rateProductForm.controls['rating'].dirty || rateProductForm.controls['rating'].touched)" class="alert alert-danger">
+        <p *ngIf="rateProductForm.controls['rating'].errors.required">Rating is mandatory</p>
+      </div>
+    </div>
+    <br />
+    <div class="form-group">
+      <label>Review Comments</label>
+      <input type="text" class="form-control" formControlName="reviewComments">
+      <div *ngIf="rateProductForm.controls['reviewComments'].errors && (rateProductForm.controls['reviewComments'].dirty || rateProductForm.controls['reviewComments'].touched)" class="alert alert-danger">
+        <p *ngIf="rateProductForm.controls['reviewComments'].errors.required">Review comments is mandatory</p>
+      </div>
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary" [disabled]="!rateProductForm.valid">Rate</button> &nbsp;
+    <button class="btn btn-link" (click)="cancel()">Cancel</button>
+  </form>
+</div>
+  <br />
+</div>

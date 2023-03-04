@@ -1,0 +1,33 @@
+
+<app-customer-layout></app-customer-layout>
+
+<div style="text-align:center;">
+  <h1>View Cart</h1>
+  <br />
+  <h3>You have added the following products to the cart:</h3>
+  <div class="table-responsive">
+      <table class="table" style="border:5px solid rgba(220,230,242,1);" *ngIf="cartProducts; else nocartProducts">
+          <tr style="background-color:rgba(220,230,242,1); font-size:12pt">
+              <th style="text-align:center">Product Name</th>
+              <th style="text-align:center">Price</th>
+              <th style="text-align:center">Quantity</th>
+              <th style="text-align:center">Total Amount</th>
+              <th>Action(s)</th>
+          </tr>
+          <tr *ngFor="let product of cartProducts" style="background-color:white">
+            <td>{{ product.productName }}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.quantity }}</td>
+            <td>{{ product.price * product.quantity }}</td>
+            <td>
+              <button class="btn btn-primary" (click)="updateCart(product)">Update Quantity</button> &nbsp;
+              <img [src]="imgPath" title="Remove this item from the cart" (click)="removeProductFromCart(product)" />
+            </td>
+          </tr>
+      </table>
+      <ng-template #nocartProducts>
+        <h3>{{ errorMsg }}</h3>
+      </ng-template>
+  </div>
+</div>
+

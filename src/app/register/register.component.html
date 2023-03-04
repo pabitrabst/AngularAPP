@@ -1,0 +1,57 @@
+<app-common-layout></app-common-layout>
+
+<div class="container">
+  <h3 style="text-align: center;">Registration Form</h3>
+  <div class="offset-3 col-sm-5">
+  <form [formGroup]="registerForm" (ngSubmit)="SubmitForm(registerForm)">
+    <div class="form-group">
+      <label>Email ID</label>
+      <input type="text" class="form-control" formControlName="emailId">
+      <div *ngIf="registerForm.controls['emailId'].errors && (registerForm.controls['emailId'].dirty || registerForm.controls['emailId'].touched)" class="alert alert-danger">
+        <p *ngIf="registerForm.controls['emailId'].errors.required">Email Id is required</p>
+        <p *ngIf="registerForm.controls['emailId'].errors.email">Email Id is not in the correct format</p>
+      </div>
+    </div>
+    <br />
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" class="form-control" formControlName="password">
+      <div *ngIf="registerForm.controls['password'].errors && (registerForm.controls['password'].dirty || registerForm.controls['password'].touched)" class="alert alert-danger">
+        <p *ngIf="registerForm.controls['password'].errors.required">Password is required</p>
+        <p *ngIf="registerForm.controls['password'].errors.minlength">Password cannot be less than 6 characters</p>
+      </div>
+    </div>
+    <br />
+    <div class="form-group">
+        <label>Gender</label>&nbsp;&nbsp;&nbsp;
+        <input type="radio" formControlName="gender" name="gender" value="M"/> &nbsp;
+        <label>Male</label>&nbsp;&nbsp;&nbsp;
+        <input type="radio" formControlName="gender" name="gender" value="F"/> &nbsp;
+        <label>Female</label>
+        <div *ngIf="registerForm.controls['gender'].errors && (registerForm.controls['gender'].dirty || registerForm.controls['gender'].touched)" class="alert alert-danger">
+          <p *ngIf="registerForm.controls['gender'].errors.required">Gender is required</p>
+        </div>
+    </div>
+    <br />
+     <div class="form-group">
+      <label>Date of Birth</label>
+      <input type="date" class="form-control" formControlName="dateOfbirth">
+      <div *ngIf="registerForm.controls['dateOfbirth'].errors && (registerForm.controls['dateOfbirth'].dirty || registerForm.controls['dateOfbirth'].touched)" class="alert alert-danger">
+        <p *ngIf="registerForm.controls['dateOfbirth'].errors.required">Date of Birth is required</p>
+        <p *ngIf="registerForm.controls['dateOfbirth'].errors.dateError">{{ registerForm.controls['dateOfbirth'].errors.dateError.message }}</p>
+      </div>
+    </div>
+    <br />
+    <div class="form-group">
+      <label>Address</label>
+      <input type="text" class="form-control" formControlName="address">
+      <div *ngIf="registerForm.controls['address'].errors && (registerForm.controls['address'].dirty || registerForm.controls['address'].touched)" class="alert alert-danger">
+        <p *ngIf="registerForm.controls['address'].errors.required">Address is required</p>
+      </div>
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">Register</button>
+  </form>
+</div>
+  <br />
+</div>

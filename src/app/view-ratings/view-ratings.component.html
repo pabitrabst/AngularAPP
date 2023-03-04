@@ -1,0 +1,58 @@
+<app-customer-layout></app-customer-layout>
+
+<div style="text-align:center;">
+  <h1>View Ratings</h1>
+  <br />
+  <!-- <h3 *ngIf="!(ratings && ratings.length)">You are yet to rate the products you purchased</h3> -->
+  <h3 *ngIf="(ratings && ratings.length)">You have rated the following products:</h3>
+  <div class="table-responsive">
+      <table class="table" style="border:5px solid rgba(220,230,242,1);" *ngIf="ratings; else noRatings">
+          <tr style="background-color:rgba(220,230,242,1); font-size:12pt">
+            <th style="text-align:center">Product Id</th>
+            <th style="text-align:center">Product Name</th>
+            <th style="text-align:center">Ratings</th>
+            <th style="text-align:center">Reviews</th>
+            <th style="text-align:center">Action(s)</th>
+          </tr>
+          <tr *ngFor="let rating of ratings" style="background-color:white">
+            <td>{{ rating.productId }}</td>
+            <td>{{ rating.productName }}</td>
+            <td>
+              <div *ngIf="rating.reviewRating == 1">
+                <span class="fa fa-star" style="color: gold"></span>
+              </div>
+              <div *ngIf="rating.reviewRating == 2">
+                <span class="fa fa-star" style="color: gold"></span>
+                <span class="fa fa-star" style="color: gold"></span>
+              </div>
+              <div *ngIf="rating.reviewRating == 3">
+                <span class="fa fa-star" style="color: gold"></span>
+                <span class="fa fa-star" style="color: gold"></span>
+                <span class="fa fa-star" style="color: gold"></span>
+              </div>
+              <div *ngIf="rating.reviewRating == 4">
+                <span class="fa fa-star" style="color: gold"></span>
+                <span class="fa fa-star" style="color: gold"></span>
+                <span class="fa fa-star" style="color: gold"></span>
+                <span class="fa fa-star" style="color: gold"></span>
+              </div>
+              <div *ngIf="rating.reviewRating == 5">
+                <span class="fa fa-star" style="color: gold"></span>
+                <span class="fa fa-star" style="color: gold"></span>
+                <span class="fa fa-star" style="color: gold"></span>
+                <span class="fa fa-star" style="color: gold"></span>
+                <span class="fa fa-star" style="color: gold"></span>
+              </div>
+            </td>
+            <td>{{ rating.reviewComments }}</td>
+            <td><input type="button" class="btn btn-primary" value="Update Review" /> &nbsp;
+              <input type="button" class="btn btn-primary" value="Delete Rating" /></td>
+          </tr>
+      </table>
+      <ng-template #noRatings>
+        <h3>{{ errorMsg }}</h3>
+      </ng-template>
+  </div>
+</div>
+
+
